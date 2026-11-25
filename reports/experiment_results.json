@@ -1,0 +1,498 @@
+{
+  "primary_task_binary_final_outcome": {
+    "description": "Evasão (1) vs. Formado (0) — 3.630 estudantes com desfecho final conhecido",
+    "splits": {
+      "train": 2541,
+      "val": 544,
+      "test": 545,
+      "encoded_input_dim": 118,
+      "test_dropout_rate_pct": 39.08
+    },
+    "baselines": {
+      "dummy_majority": {
+        "accuracy": 0.6092,
+        "f1": 0.0,
+        "roc_auc": 0.5
+      },
+      "perceptron_linear": {
+        "accuracy": 0.8881,
+        "precision": 0.8167,
+        "recall": 0.9202,
+        "f1": 0.8653,
+        "roc_auc": 0.9567,
+        "pr_auc": 0.9449,
+        "auc_ci95": [
+          0.9369,
+          0.9737
+        ],
+        "confusion_matrix": [
+          [
+            288,
+            44
+          ],
+          [
+            17,
+            196
+          ]
+        ],
+        "val_auc": 0.9622,
+        "num_parameters": 119
+      },
+      "logistic_regression": {
+        "accuracy": 0.9156,
+        "precision": 0.9196,
+        "recall": 0.8592,
+        "f1": 0.8883,
+        "roc_auc": 0.9643,
+        "pr_auc": 0.9565,
+        "auc_ci95": [
+          0.9477,
+          0.9789
+        ],
+        "confusion_matrix": [
+          [
+            316,
+            16
+          ],
+          [
+            30,
+            183
+          ]
+        ],
+        "val_auc": 0.9706,
+        "val_threshold": 0.66,
+        "num_parameters": 119
+      }
+    },
+    "architecture_ablation": [
+      {
+        "label": "Perceptron (0 ocultas)",
+        "hidden_layers": [],
+        "num_trainable_layers": 1,
+        "num_parameters": 119,
+        "val_auc": 0.9622,
+        "test_auc": 0.9567,
+        "test_f1": 0.8653,
+        "test_acc": 0.8881
+      },
+      {
+        "label": "MLP 1 oculta (32)",
+        "hidden_layers": [
+          32
+        ],
+        "num_trainable_layers": 2,
+        "num_parameters": 3841,
+        "best_epoch": 15,
+        "train_time_sec": 2.17,
+        "val_auc": 0.9736,
+        "val_auc_std": 0.0001,
+        "val_threshold": 0.66,
+        "test_auc": 0.9667,
+        "test_f1": 0.8845,
+        "test_acc": 0.9138
+      },
+      {
+        "label": "MLP 1 oculta (64)",
+        "hidden_layers": [
+          64
+        ],
+        "num_trainable_layers": 2,
+        "num_parameters": 7681,
+        "best_epoch": 44,
+        "train_time_sec": 3.68,
+        "val_auc": 0.9752,
+        "val_auc_std": 0.0005,
+        "val_threshold": 0.7,
+        "test_auc": 0.968,
+        "test_f1": 0.8824,
+        "test_acc": 0.9119
+      },
+      {
+        "label": "MLP 2 ocultas (64→32)",
+        "hidden_layers": [
+          64,
+          32
+        ],
+        "num_trainable_layers": 3,
+        "num_parameters": 9729,
+        "best_epoch": 6,
+        "train_time_sec": 1.83,
+        "val_auc": 0.9731,
+        "val_auc_std": 0.0011,
+        "val_threshold": 0.62,
+        "test_auc": 0.9653,
+        "test_f1": 0.8798,
+        "test_acc": 0.9083
+      },
+      {
+        "label": "MLP 3 ocultas (128→64→32)",
+        "hidden_layers": [
+          128,
+          64,
+          32
+        ],
+        "num_trainable_layers": 4,
+        "num_parameters": 25601,
+        "best_epoch": 4,
+        "train_time_sec": 1.8,
+        "val_auc": 0.9727,
+        "val_auc_std": 0.0013,
+        "val_threshold": 0.61,
+        "test_auc": 0.9636,
+        "test_f1": 0.8911,
+        "test_acc": 0.9193
+      }
+    ],
+    "selected_mlp": {
+      "label": "MLP 1 oculta (64)",
+      "hidden_layers": [
+        64
+      ],
+      "num_trainable_layers": 2,
+      "input_dim_after_encoding": 118,
+      "num_parameters": 7681,
+      "best_epoch": 44,
+      "val_auc_3seed_mean": 0.9752,
+      "val_threshold": 0.7,
+      "test_metrics": {
+        "accuracy": 0.9119,
+        "precision": 0.9231,
+        "recall": 0.8451,
+        "f1": 0.8824,
+        "roc_auc": 0.968,
+        "pr_auc": 0.9631,
+        "auc_ci95": [
+          0.9522,
+          0.981
+        ],
+        "confusion_matrix": [
+          [
+            317,
+            15
+          ],
+          [
+            33,
+            180
+          ]
+        ]
+      }
+    }
+  },
+  "early_detection_stages": [
+    {
+      "stage_label": "Na Matrícula\n(Dia 1)",
+      "stage_clean": "Na Matrícula (Dia 1)",
+      "raw_cols_count": 24,
+      "encoded_dim": 102,
+      "val_auc": 0.8686,
+      "accuracy": 0.7523,
+      "precision": 0.6696,
+      "recall": 0.723,
+      "f1": 0.6953,
+      "roc_auc": 0.8482,
+      "pr_auc": 0.8118,
+      "auc_ci95": [
+        0.8148,
+        0.8798
+      ],
+      "confusion_matrix": [
+        [
+          256,
+          76
+        ],
+        [
+          59,
+          154
+        ]
+      ]
+    },
+    {
+      "stage_label": "Após 1º Semestre\n(Intervenção Precoce)",
+      "stage_clean": "Após 1º Semestre (Intervenção Precoce)",
+      "raw_cols_count": 31,
+      "encoded_dim": 109,
+      "val_auc": 0.9464,
+      "accuracy": 0.8972,
+      "precision": 0.8867,
+      "recall": 0.8451,
+      "f1": 0.8654,
+      "roc_auc": 0.9513,
+      "pr_auc": 0.9448,
+      "auc_ci95": [
+        0.9331,
+        0.9689
+      ],
+      "confusion_matrix": [
+        [
+          309,
+          23
+        ],
+        [
+          33,
+          180
+        ]
+      ]
+    },
+    {
+      "stage_label": "Após 2º Semestre\n(Modelo Completo)",
+      "stage_clean": "Após 2º Semestre (Modelo Completo)",
+      "raw_cols_count": 40,
+      "encoded_dim": 118,
+      "val_auc": 0.9748,
+      "accuracy": 0.9119,
+      "precision": 0.9231,
+      "recall": 0.8451,
+      "f1": 0.8824,
+      "roc_auc": 0.968,
+      "pr_auc": 0.9631,
+      "auc_ci95": [
+        0.9522,
+        0.981
+      ],
+      "confusion_matrix": [
+        [
+          317,
+          15
+        ],
+        [
+          33,
+          180
+        ]
+      ]
+    }
+  ],
+  "all_students_binary_4424": {
+    "n_total": 4424,
+    "n_test": 664,
+    "perceptron": {
+      "accuracy": 0.8524,
+      "precision": 0.7426,
+      "recall": 0.8263,
+      "f1": 0.7822,
+      "roc_auc": 0.9177,
+      "pr_auc": 0.875,
+      "auc_ci95": [
+        0.8908,
+        0.942
+      ],
+      "confusion_matrix": [
+        [
+          390,
+          61
+        ],
+        [
+          37,
+          176
+        ]
+      ]
+    },
+    "pytorch_mlp": {
+      "accuracy": 0.8599,
+      "precision": 0.75,
+      "recall": 0.8451,
+      "f1": 0.7947,
+      "roc_auc": 0.9383,
+      "pr_auc": 0.9048,
+      "auc_ci95": [
+        0.9149,
+        0.9569
+      ],
+      "confusion_matrix": [
+        [
+          391,
+          60
+        ],
+        [
+          33,
+          180
+        ]
+      ]
+    }
+  },
+  "multiclass_3_classes_4424": {
+    "n_test": 664,
+    "val_macro_f1": 0.7149,
+    "test_accuracy": 0.7892,
+    "test_macro_f1": 0.7287,
+    "f1_per_class": {
+      "Dropout": 0.8058,
+      "Enrolled": 0.5112,
+      "Graduate": 0.8692
+    },
+    "confusion_matrix_dropout_enrolled_graduate": [
+      [
+        168,
+        26,
+        20
+      ],
+      [
+        24,
+        57,
+        38
+      ],
+      [
+        11,
+        21,
+        299
+      ]
+    ]
+  },
+  "top15_permutation_importance": [
+    {
+      "feature": "cu_1st_approved",
+      "label_pt": "Disciplinas aprovadas (1º sem.)",
+      "group": "Desempenho 1º Semestre",
+      "delta_auc_mean": 0.03487,
+      "delta_auc_std": 0.00436
+    },
+    {
+      "feature": "cu_2nd_approved",
+      "label_pt": "Disciplinas aprovadas (2º sem.)",
+      "group": "Desempenho 2º Semestre",
+      "delta_auc_mean": 0.03256,
+      "delta_auc_std": 0.00496
+    },
+    {
+      "feature": "course",
+      "label_pt": "Curso de graduação",
+      "group": "Perfil / Ingresso / Macro",
+      "delta_auc_mean": 0.0184,
+      "delta_auc_std": 0.0032
+    },
+    {
+      "feature": "approval_rate_1st_sem",
+      "label_pt": "Taxa de aprovação (1º sem.)",
+      "group": "Desempenho 1º Semestre",
+      "delta_auc_mean": 0.01839,
+      "delta_auc_std": 0.00603
+    },
+    {
+      "feature": "approval_rate_2nd_sem",
+      "label_pt": "Taxa de aprovação (2º sem.)",
+      "group": "Desempenho 2º Semestre",
+      "delta_auc_mean": 0.01198,
+      "delta_auc_std": 0.00351
+    },
+    {
+      "feature": "cu_1st_enrolled",
+      "label_pt": "Disciplinas matriculadas (1º sem.)",
+      "group": "Desempenho 1º Semestre",
+      "delta_auc_mean": 0.0094,
+      "delta_auc_std": 0.00196
+    },
+    {
+      "feature": "cu_2nd_enrolled",
+      "label_pt": "Disciplinas matriculadas (2º sem.)",
+      "group": "Desempenho 2º Semestre",
+      "delta_auc_mean": 0.00874,
+      "delta_auc_std": 0.00115
+    },
+    {
+      "feature": "cu_1st_credited",
+      "label_pt": "Disciplinas aproveitadas (1º sem.)",
+      "group": "Desempenho 1º Semestre",
+      "delta_auc_mean": 0.00864,
+      "delta_auc_std": 0.00117
+    },
+    {
+      "feature": "tuition_fees_up_to_date",
+      "label_pt": "Mensalidades em dia",
+      "group": "Financeiro / Bolsa",
+      "delta_auc_mean": 0.00807,
+      "delta_auc_std": 0.00172
+    },
+    {
+      "feature": "cu_2nd_credited",
+      "label_pt": "Disciplinas aproveitadas (2º sem.)",
+      "group": "Desempenho 2º Semestre",
+      "delta_auc_mean": 0.00741,
+      "delta_auc_std": 0.00109
+    },
+    {
+      "feature": "debtor",
+      "label_pt": "Inadimplente (devedor)",
+      "group": "Financeiro / Bolsa",
+      "delta_auc_mean": 0.00384,
+      "delta_auc_std": 0.0013
+    },
+    {
+      "feature": "mothers_occupation",
+      "label_pt": "Ocupação da mãe",
+      "group": "Perfil / Ingresso / Macro",
+      "delta_auc_mean": 0.00264,
+      "delta_auc_std": 0.00196
+    },
+    {
+      "feature": "cu_2nd_evaluations",
+      "label_pt": "Avaliações realizadas (2º sem.)",
+      "group": "Desempenho 2º Semestre",
+      "delta_auc_mean": 0.00259,
+      "delta_auc_std": 0.00109
+    },
+    {
+      "feature": "scholarship_holder",
+      "label_pt": "Bolsista",
+      "group": "Financeiro / Bolsa",
+      "delta_auc_mean": 0.00246,
+      "delta_auc_std": 0.00133
+    },
+    {
+      "feature": "mothers_qualification",
+      "label_pt": "Escolaridade da mãe",
+      "group": "Perfil / Ingresso / Macro",
+      "delta_auc_mean": 0.0024,
+      "delta_auc_std": 0.00097
+    }
+  ],
+  "subgroup_slices_test": {
+    "Bolsista": {
+      "rows": 131,
+      "dropout_rate_pct": 13.7,
+      "accuracy": 0.9618,
+      "f1": 0.8387,
+      "roc_auc": 0.9803
+    },
+    "Não-Bolsista": {
+      "rows": 414,
+      "dropout_rate_pct": 47.1,
+      "accuracy": 0.8961,
+      "f1": 0.8859,
+      "roc_auc": 0.9623
+    },
+    "Turno Diurno": {
+      "rows": 491,
+      "dropout_rate_pct": 38.3,
+      "accuracy": 0.9043,
+      "f1": 0.8691,
+      "roc_auc": 0.9636
+    },
+    "Turno Noturno": {
+      "rows": 54,
+      "dropout_rate_pct": 46.3,
+      "accuracy": 0.9815,
+      "f1": 0.9796,
+      "roc_auc": 0.9986
+    },
+    "Idade ≤ 20 anos": {
+      "rows": 318,
+      "dropout_rate_pct": 28.3,
+      "accuracy": 0.9151,
+      "f1": 0.8439,
+      "roc_auc": 0.9574
+    },
+    "Idade > 20 anos": {
+      "rows": 227,
+      "dropout_rate_pct": 54.2,
+      "accuracy": 0.9075,
+      "f1": 0.9106,
+      "roc_auc": 0.9742
+    }
+  },
+  "figures_generated": [
+    "01_eda_and_class_balance.png",
+    "02_training_curves.png",
+    "03_roc_and_confusion.png",
+    "04_architecture_and_early_detection.png",
+    "05_feature_importance_and_slices.png"
+  ]
+}
