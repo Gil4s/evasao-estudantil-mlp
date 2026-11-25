@@ -1,0 +1,45 @@
+{
+  "generated_at_utc": "2026-11-25T23:26:49.092425+00:00",
+  "sources": {
+    "uci_page": "https://archive.ics.uci.edu/dataset/697/predict+students+dropout+and+academic+success",
+    "kaggle_page": "https://www.kaggle.com/datasets/thedevastator/higher-education-predictors-of-student-retention",
+    "citation": "Realinho, V., Machado, J., Baptista, L., & Martins, M. V. (2022). Predicting Student Dropout and Academic Success. Data, 7(11), 146.",
+    "institution": "Instituto Politécnico de Portalegre (Portugal), 17 cursos de graduação (2008–2019)"
+  },
+  "audit": {
+    "raw_rows": 4424,
+    "raw_feature_cols": 36,
+    "engineered_feature_cols": 4,
+    "total_model_input_raw_cols": 40,
+    "missing_values_total": 0,
+    "exact_duplicate_rows": 0,
+    "nominal_categorical_cols": 9,
+    "binary_cols": 8
+  },
+  "class_distribution": {
+    "Graduate": 2209,
+    "Dropout": 1421,
+    "Enrolled": 794
+  },
+  "processed_counts": {
+    "all_students_rows": 4424,
+    "binary_final_outcome_rows": 3630,
+    "excluded_ambiguous_enrolled_in_binary": 794
+  },
+  "eda_dropout_rates": {
+    "overall_all_pct": 32.12,
+    "overall_binary_final_outcome_pct": 39.15,
+    "tuition_up_to_date_yes_pct": 24.74,
+    "tuition_up_to_date_no_pct": 86.55,
+    "scholarship_yes_pct": 12.19,
+    "scholarship_no_pct": 38.71,
+    "debtor_yes_pct": 62.03,
+    "debtor_no_pct": 28.28,
+    "attendance_daytime_pct": 30.8,
+    "attendance_evening_pct": 42.86,
+    "mean_approval_rate_1st_sem_dropout": 38.4,
+    "mean_approval_rate_1st_sem_graduate": 90.3,
+    "mean_approval_rate_2nd_sem_dropout": 29.3,
+    "mean_approval_rate_2nd_sem_graduate": 90.0
+  }
+}
